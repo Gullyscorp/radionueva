@@ -1,14 +1,195 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-        <title>Blank App</title>
-    </head>
-    <body>
+<head>
+	<title>Radio Nueva</title>
+	<meta charset utf="8">
+	<meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+  
 	
-		<h1>Esta es mi APP XD</h1>
+	<!--font-awsome-css-->
+	<link href="css/font-awesome.min.css" rel="stylesheet" >
+	<!--bootstrap-->
+	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<!--custom css-->
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<!--component-css-->
+</head>
+
+<body>
 	
-        <script type="text/javascript" src="cordova.js"></script>
-    </body>
+	<div class="body-back">
+		
+		<div class="masthead pdng-stn1">
+			
+			<div id="menu" class="panel" role="navigation">
+				<div class="wrap-content">
+					<!-- /menu -->
+					<div class="profile-menu text-center">
+						<div class="pro-menu">
+							<ul>
+								<li><a class="push" page="nosotros.html"><i class="fa fa-users"></i> Nosotros</a></li>
+								<li><a class="push" page="ubicacion.html"><i class="fa fa-location-arrow"></i> Ubicación</a></li>
+								<li><a class="push" page="contacto.html"><i class="fa fa-phone-square"></i> Contacto</a></li>
+							</ul>
+						</div>
+					</div>
+					<!-- //menu -->
+				</div>
+			</div>
+			
+			
+			<div class="phone-box wrap push" id="home">
+			
+				<!-- banner -->
+				
+				<div class="banner_info_agile_w3ls home">
+					<div class="banner_info_agile_w3ls_inner">
+						
+						
+					
+						<a href="#menu" class="btn btn-default pull-left menu-link"><i class="fa fa-bars"></i></a>
+						
+						<img src="images/logo.png" alt=" " class="img-responsive">
+						
+						<div class="player">
+						
+							<audio id="radio"> 
+								<source src="http://radiolatina.info:9992/stream" type="audio/mpeg">
+							</audio>
+							
+							<button class="btn btn-lg" id="play"><i class="fa fa-play"></i></button>
+							<button class="btn btn-lg" id="pause"><i class="fa fa-pause"></i></button>
+							
+							<div class="state">
+								<div class="play">
+									<div class="icon lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+									Reproduciendo
+								</div>
+
+								<div class="pause">
+									<div class="icon lds-ellipsis no"><div></div><div></div><div></div><div></div></div>
+									Detenido
+								</div>
+							</div>
+							
+							
+							
+						</div>
+						
+						
+						
+						<ul class="top-links_w3layouts">
+							<li><a href="https://www.facebook.com/ranueva1140/"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="https://twitter.com/rnueva1140"><i class="fa fa-twitter"></i></a></li>
+						</ul>
+					</div>
+					
+					
+				</div>
+				
+				
+				
+				
+				<div class="overlay">
+					<button class="close"><i class="fa fa-close"></i></button>
+					<div id="content"></div>
+				</div>
+				
+	
+				
+				
+				<!--//footer-->
+				<div class="footer">
+				
+					<div class="container">
+					
+						<div class="footer_pos_w3_agile">
+							<p>© Radio Nueva. All Rights Reserved </p>
+							<p>Design by <strong>Gully's Corp</strong> & <strong>DiwalCR</strong></p>
+						</div>
+					
+					</div>
+				</div>
+				<!--//footer-->
+
+			</div>
+		</div>
+	</div>
+	<script src="js/jquery-2.1.4.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<!--script-->
+	<script src="js/bigSlide.js"></script>
+	<script>
+		$(document).ready(function () {
+			$('.menu-link').bigSlide({
+				'easyClose': true
+			});
+		});
+	</script>
+	<script>
+						
+		$(document).ready(function(e){
+			
+			//play();
+			
+			$("#play").click(function(e){
+				play();
+			});
+
+			$("#pause").click(function(e){
+				pause();
+			});
+			
+			$("button.close").click(function(e){
+				$(".overlay").animate({
+					left: "-110%"
+				}, function() {
+					$("#content").html("loading...");
+				});
+			});
+			
+			
+			$(".pro-menu ul li a").click(function(e){
+				
+				$(".pro-menu ul li a").removeClass('active');
+				$(this).addClass('active');
+				
+				$(".overlay").animate({
+					//opacity: 0.25,
+					left: "-110%"
+				});
+				
+				$("#content").load($(this).attr('page'));
+				
+				$(".overlay").animate({
+					//opacity: 0.25,
+					left: "0"
+				});
+				
+			});
+
+		});
+		
+		
+		function play(){
+			$("#radio").trigger('play');
+			$("#pause, .play").show();
+			$("#play, .pause").hide();
+		}
+		
+		function pause(){
+			$("#radio").trigger('pause');
+			$("#pause, .play").hide();
+			$("#play, .pause").show();
+		}
+
+	</script>
+	
+	<script type="text/javascript" src="cordova.js"></script>
+	
+</body>
+
 </html>
